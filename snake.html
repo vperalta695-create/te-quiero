@@ -11,9 +11,9 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
       font-family: Arial, sans-serif;
       color: white;
-      flex-direction: column;
     }
 
     canvas {
@@ -32,37 +32,77 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
 const box = 20;
-let snake = [{x: 10 * box, y: 10 * box}];
-let food = {x: 200, y: 200};
+let snake = [{ x: 10 * box, y: 10 * box }];
 let direction = "RIGHT";
+let score = 0;
 
+// comida aleatoria
+let food = {
+  x: Math.floor(Math.random() * 20) * box,
+  y: Math.floor(Math.random() * 20) * box
+};
+
+// controles
 document.addEventListener("keydown", e => {
-  if (e.key === "ArrowUp") direction = "UP";
-  if (e.key === "ArrowDown") direction = "DOWN";
-  if (e.key === "ArrowLeft") direction = "LEFT";
-  if (e.key === "ArrowRight") direction = "RIGHT";
+  if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
+  if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+  if (e.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
+  if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
 });
 
 function draw() {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, 400, 400);
 
-  snake.forEach(p => ctx.fillRect(p.x, p.y, box, box));
+  // dibujar snake
+  ctx.fillStyle = "#00ff88";
+  snake.forEach(part => ctx.fillRect(part.x, part.y, box, box));
+
+  // dibujar comida
   ctx.fillStyle = "red";
   ctx.fillRect(food.x, food.y, box, box);
 
-  let head = {...snake[0]};
+  let headX = snake[0].x;
+  let headY = snake[0].y;
 
-  if (direction === "RIGHT") head.x += box;
-  if (direction === "LEFT") head.x -= box;
-  if (direction === "UP") head.y -= box;
-  if (direction === "DOWN") head.y += box;
+  if (direction === "LEFT") headX -= box;
+  if (direction === "RIGHT") headX += box;
+  if (direction === "UP") headY -= box;
+  if (direction === "DOWN") headY += box;
 
-  snake.unshift(head);
-  snake.pop();
+  // comer comida
+  if (headX === food.x && headY === food.y) {
+    score++;
+
+    food = {
+      x: Math.floor(Math.random() * 20) * box,
+      y: Math.floor(Math.random() * 20) * box
+    };
+  } else {
+    snake.pop(); // se mueve sin crecer
+  }
+
+  const newHead = { x: headX, y: headY };
+
+  // colisiones
+  if (
+    headX < 0 || headY < 0 ||
+    headX >= 400 || headY >= 400 ||
+    collision(newHead, snake)
+  ) {
+    clearInterval(game);
+    alert("💀 Perdiste. Puntaje: " + score);
+  }
+
+  snake.unshift(newHead);
 }
 
-setInterval(draw, 120);
+// chocar consigo misma
+function collision(head, array) {
+  return array.some(part => part.x === head.x && part.y === head.y);
+}
+
+const game = setInterval(draw, 120);
 </script>
 
 </body>
