@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Viborita 🐍</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      flex-direction: column;
+    }
+
+    canvas {
+      background: black;
+      border: 3px solid #00ff88;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🐍 Juego secreto</h2>
+<canvas id="game" width="400" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const box = 20;
+let snake = [{x: 10 * box, y: 10 * box}];
+let food = {x: 200, y: 200};
+let direction = "RIGHT";
+
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowUp") direction = "UP";
+  if (e.key === "ArrowDown") direction = "DOWN";
+  if (e.key === "ArrowLeft") direction = "LEFT";
+  if (e.key === "ArrowRight") direction = "RIGHT";
+});
+
+function draw() {
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, 400, 400);
+
+  snake.forEach(p => ctx.fillRect(p.x, p.y, box, box));
+  ctx.fillStyle = "red";
+  ctx.fillRect(food.x, food.y, box, box);
+
+  let head = {...snake[0]};
+
+  if (direction === "RIGHT") head.x += box;
+  if (direction === "LEFT") head.x -= box;
+  if (direction === "UP") head.y -= box;
+  if (direction === "DOWN") head.y += box;
+
+  snake.unshift(head);
+  snake.pop();
+}
+
+setInterval(draw, 120);
+</script>
+
+</body>
+</html>
