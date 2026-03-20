@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delicias de Mati 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --caramel:    #C4884A;
+    --dark-brown: #3E2010;
+    --mid-brown:  #7A4A1E;
+    --beige:      #F2E4CC;
+    --cream:      #FDF6EC;
+    --terracotta: #C0623A;
+    --warm-sand:  #E8C99A;
+    --text-dark:  #2A1505;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(253,246,236,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--warm-sand);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--mid-brown);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span { color: var(--terracotta); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    color: var(--mid-brown); transition: color 0.2s;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--dark-brown) 0%, var(--mid-brown) 50%, var(--caramel) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; padding: 100px 40px 60px;
+  }
+  .hero-circles {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .hero-circles span {
+    position: absolute; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.08);
+  }
+  .hero-circles span:nth-child(1) { width: 500px; height: 500px; top: -100px; right: -100px; }
+  .hero-circles span:nth-child(2) { width: 300px; height: 300px; bottom: -50px; left: -80px; }
+  .hero-circles span:nth-child(3) { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+  .hero-content {
+    text-align: center; position: relative; z-index: 2;
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--warm-sand);
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 6px 18px; border-radius: 999px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900; line-height: 1.05;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--warm-sand);
+  }
+  .capibara-emoji {
+    font-size: 3rem; display: block; margin: 16px auto;
+    animation: wiggle 3s ease-in-out infinite;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.75); font-size: 1.1rem;
+    max-width: 480px; margin: 0 auto 36px; line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--terracotta); color: #fff;
+    padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 24px rgba(192,98,58,0.45);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(192,98,58,0.55); }
+  .btn-secondary {
+    background: transparent; color: #fff;
+    padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    border: 2px solid rgba(255,255,255,0.4);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+  /* ── DIVIDER WAVE ── */
+  .wave {
+    display: block; width: 100%; overflow: hidden; line-height: 0;
+    margin-top: -2px;
+  }
+  .wave svg { display: block; width: 100%; }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--beige);
+    padding: 80px 40px;
+    display: flex; align-items: center; justify-content: center; gap: 60px;
+    flex-wrap: wrap;
+  }
+  .about-text { max-width: 480px; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--terracotta);
+    margin-bottom: 12px; display: block;
+  }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900;
+    color: var(--dark-brown); line-height: 1.2; margin-bottom: 18px;
+  }
+  .about-text p {
+    color: var(--mid-brown); line-height: 1.8; font-size: 1rem; margin-bottom: 14px;
+  }
+  .about-card {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 40px 36px;
+    border: 2px solid var(--warm-sand);
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(62,32,16,0.1);
+    min-width: 220px;
+  }
+  .about-card .big-emoji { font-size: 3.5rem; display: block; margin-bottom: 12px; }
+  .about-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--dark-brown); margin-bottom: 6px;
+  }
+  .about-card p { font-size: 0.9rem; color: var(--mid-brown); }
+
+  /* ── MENU ── */
+  .menu {
+    padding: 90px 40px;
+    background: var(--cream);
+    text-align: center;
+  }
+  .menu h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+    color: var(--dark-brown); margin-bottom: 8px;
+  }
+  .menu > p { color: var(--mid-brown); margin-bottom: 52px; font-size: 1rem; }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px; max-width: 1000px; margin: 0 auto;
+  }
+  .menu-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid var(--warm-sand);
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 16px rgba(62,32,16,0.07);
+  }
+  .menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(62,32,16,0.15);
+  }
+  .menu-card-img {
+    background: var(--beige);
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    position: relative; overflow: hidden;
+  }
+  .menu-card-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(62,32,16,0.06) 100%);
+  }
+  .menu-card-body { padding: 20px 22px 22px; }
+  .menu-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--dark-brown); margin-bottom: 6px;
+  }
+  .menu-card-body p { font-size: 0.88rem; color: var(--mid-brown); line-height: 1.6; margin-bottom: 14px; }
+  .price-tag {
+    display: inline-block;
+    background: var(--beige);
+    color: var(--terracotta);
+    font-weight: 800; font-size: 1rem;
+    padding: 4px 14px; border-radius: 999px;
+    border: 1.5px solid var(--warm-sand);
+  }
+  .order-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 12px; float: right;
+    background: var(--terracotta); color: #fff;
+    padding: 8px 18px; border-radius: 999px;
+    font-size: 0.82rem; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .order-btn:hover { background: var(--mid-brown); transform: scale(1.04); }
+
+  /* ── BANNER ── */
+  .banner {
+    background: linear-gradient(135deg, var(--dark-brown), var(--mid-brown));
+    padding: 70px 40px;
+    text-align: center; color: #fff;
+  }
+  .banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; margin-bottom: 16px;
+  }
+  .banner p { color: var(--warm-sand); margin-bottom: 32px; font-size: 1rem; max-width: 500px; margin-inline: auto; margin-bottom: 32px; }
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #25D366; color: #fff;
+    padding: 16px 36px; border-radius: 999px;
+    font-weight: 800; font-size: 1.05rem; text-decoration: none;
+    box-shadow: 0 6px 28px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(37,211,102,0.5); }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--beige);
+    padding: 80px 40px;
+    display: flex; flex-wrap: wrap; gap: 48px;
+    justify-content: center; align-items: flex-start;
+  }
+  .contact-info { max-width: 400px; }
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900;
+    color: var(--dark-brown); margin-bottom: 20px;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--caramel); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .contact-item h4 { font-size: 0.8rem; color: var(--caramel); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .contact-item p { font-size: 0.95rem; color: var(--mid-brown); font-weight: 600; }
+  .contact-card {
+    background: var(--dark-brown);
+    color: #fff; border-radius: 24px; padding: 36px;
+    min-width: 280px; max-width: 340px;
+  }
+  .contact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; margin-bottom: 8px; color: var(--warm-sand);
+  }
+  .contact-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-bottom: 24px; }
+  .hours-list { list-style: none; }
+  .hours-list li {
+    display: flex; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+  }
+  .hours-list li:last-child { border-bottom: none; }
+  .hours-list li span:last-child { color: var(--warm-sand); font-weight: 700; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark-brown);
+    color: rgba(255,255,255,0.5);
+    text-align: center; padding: 28px 20px;
+    font-size: 0.85rem;
+  }
+  footer strong { color: var(--warm-sand); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-5deg); }
+    50%       { transform: rotate(5deg); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .hero, .about, .menu, .contact { padding-left: 20px; padding-right: 20px; }
+    .about { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🎂 <span>Delicias</span> de Mati</div>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#pedidos">Pedidos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-circles">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="floaties"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🎂 Hecho con amor, horneado con pasión</div>
+    <h1>Delicias<br><em>de Mati</em></h1>
+    <span class="capibara-emoji">🎂</span>
+    <p>Queques fresquitos, esponjosos y en tus sabores favoritos — horneados a pedido con mucho cariño.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">Ver el menú</a>
+      <a href="#pedidos" class="btn-secondary">Hacer un pedido</a>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none" height="80">
+    <path fill="#F2E4CC" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="nosotros">
+  <div class="about-text reveal-left">
+    <span class="section-label">Nosotros</span>
+    <h2>Dos generaciones, una sola receta 🎂</h2>
+    <p>Delicias de Mati nació gracias a mi abuela Susi — o como yo le digo, <strong>Mami Susi</strong>. Ella es quien tiene los secretos del horno, las recetas de siempre y esa magia que solo las abuelas saben.</p>
+    <p>Yo, Mati, me encargo de llevar esos sabores caseros hasta vos. Todo lo que vendemos sale de su cocina, con sus manos y su cariño de siempre. Nada de fórmulas industriales — pura tradición familiar.</p>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:20px;">
+    <div class="about-card">
+      <span class="big-emoji">🔥</span>
+      <h3>Recién horneado</h3>
+      <p>Todo se prepara fresco<br>a pedido del cliente</p>
+    </div>
+    <div class="about-card">
+      <span class="big-emoji">💛</span>
+      <h3>Con amor casero</h3>
+      <p>Recetas auténticas,<br>sabor de siempre</p>
+    </div>
+  </div>
+</section>
+
+<!-- CARRITO SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>🛒 Tu pedido</h3>
+    <button onclick="toggleCart()" class="cart-close">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">Aún no agregaste nada 🎂</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-notice">
+      ⚠️ Pedidos con <strong>1 día de anticipación</strong><br>
+      🚚 Entregas: <strong>miércoles y sábados</strong>
+    </div>
+    <div class="cart-date-group">
+      <label>📅 ¿Para cuándo lo necesitás?</label>
+      <input type="date" id="deliveryDate" />
+      <span class="date-hint" id="dateHint"></span>
+    </div>
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span id="cartTotal">Bs. 0</span>
+    </div>
+    <button class="cart-whatsapp-btn" onclick="sendToWhatsApp()">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar pedido por WhatsApp
+    </button>
+    <button class="cart-clear-btn" onclick="clearCart()">Vaciar carrito</button>
+  </div>
+</div>
+
+<!-- BOTÓN FLOTANTE CARRITO -->
+<button class="cart-fab" id="cartFab" onclick="toggleCart()">
+  🛒 <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <span class="section-label">Lo que tenemos</span>
+  <h2 class="reveal">Nuestros Queques 🎂</h2>
+  <p class="reveal">Todos a <strong>Bs. 20</strong> — fresquitos y horneados a pedido</p>
+
+  <div class="stats-row reveal">
+    <div class="stat-box">
+      <span class="stat-num" data-target="5" data-suffix=" sabores">0 sabores</span>
+      <span class="stat-label">para elegir</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-target="20" data-suffix=" Bs.">0 Bs.</span>
+      <span class="stat-label">precio único</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num" data-target="24" data-suffix="h">0h</span>
+      <span class="stat-label">de anticipación</span>
+    </div>
+  </div>
+
+  <div class="flavor-filters reveal" style="margin-top:32px">
+    <button class="flavor-btn active" data-filter="all">🎂 Todos</button>
+    <button class="flavor-btn" data-filter="vainilla">🍦 Vainilla</button>
+    <button class="flavor-btn" data-filter="naranja">🍊 Naranja</button>
+    <button class="flavor-btn" data-filter="chocolate">🍫 Chocolate</button>
+    <button class="flavor-btn" data-filter="coco">🥥 Coco</button>
+    <button class="flavor-btn" data-filter="almendra">🌰 Almendra</button>
+  </div>
+
+  <div class="menu-grid">
+
+    <div class="menu-card reveal" data-flavor="vainilla">
+      <div class="menu-card-body">
+        <h3>Queque de Vainilla</h3>
+        <p>Clásico y esponjoso, con ese sabor suave y dulce que nunca falla.</p>
+        <div class="card-bottom">
+          <span class="price-tag">Bs. 20</span>
+          <div class="qty-controls">
+            <button onclick="changeQty('vainilla', -1)">−</button>
+            <span id="qty-vainilla">0</span>
+            <button onclick="changeQty('vainilla', 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn" onclick="addToCart('vainilla','Queque de Vainilla','🍦',20)">Agregar al carrito 🛒</button>
+      </div>
+    </div>
+
+    <div class="menu-card reveal" data-flavor="naranja">
+      <div class="menu-card-img">🍊</div>
+      <div class="menu-card-body">
+        <h3>Queque de Naranja</h3>
+        <p>Húmedo y cítrico, fresco e irresistible. ¡Un clásico de Mami Susi!</p>
+        <div class="card-bottom">
+          <span class="price-tag">Bs. 20</span>
+          <div class="qty-controls">
+            <button onclick="changeQty('naranja', -1)">−</button>
+            <span id="qty-naranja">0</span>
+            <button onclick="changeQty('naranja', 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn" onclick="addToCart('naranja','Queque de Naranja','🍊',20)">Agregar al carrito 🛒</button>
+      </div>
+    </div>
+
+    <div class="menu-card reveal" data-flavor="chocolate">
+      <div class="menu-card-img">🍫</div>
+      <div class="menu-card-body">
+        <h3>Queque de Chocolate</h3>
+        <p>Intenso y suave, con todo el sabor del cacao. Para los chocoadictos.</p>
+        <div class="card-bottom">
+          <span class="price-tag">Bs. 20</span>
+          <div class="qty-controls">
+            <button onclick="changeQty('chocolate', -1)">−</button>
+            <span id="qty-chocolate">0</span>
+            <button onclick="changeQty('chocolate', 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn" onclick="addToCart('chocolate','Queque de Chocolate','🍫',20)">Agregar al carrito 🛒</button>
+      </div>
+    </div>
+
+    <div class="menu-card reveal" data-flavor="coco">
+      <div class="menu-card-img">🥥</div>
+      <div class="menu-card-body">
+        <h3>Queque de Coco</h3>
+        <p>Con coco rallado y ese aroma tropical. Suave, aromático y delicioso.</p>
+        <div class="card-bottom">
+          <span class="price-tag">Bs. 20</span>
+          <div class="qty-controls">
+            <button onclick="changeQty('coco', -1)">−</button>
+            <span id="qty-coco">0</span>
+            <button onclick="changeQty('coco', 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn" onclick="addToCart('coco','Queque de Coco','🥥',20)">Agregar al carrito 🛒</button>
+      </div>
+    </div>
+
+    <div class="menu-card reveal" data-flavor="almendra">
+      <div class="menu-card-img">🌰</div>
+      <div class="menu-card-body">
+        <h3>Queque de Almendra</h3>
+        <p>Con almendras molidas, textura única y sabor suave y sofisticado.</p>
+        <div class="card-bottom">
+          <span class="price-tag">Bs. 20</span>
+          <div class="qty-controls">
+            <button onclick="changeQty('almendra', -1)">−</button>
+            <span id="qty-almendra">0</span>
+            <button onclick="changeQty('almendra', 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn" onclick="addToCart('almendra','Queque de Almendra','🌰',20)">Agregar al carrito 🛒</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── QTY CONTROLS ── */
+  .card-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .qty-controls {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .qty-controls button {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--warm-sand);
+    background: var(--beige); color: var(--dark-brown);
+    font-size: 1.1rem; font-weight: 800; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .qty-controls button:hover { background: var(--warm-sand); border-color: var(--caramel); }
+  .qty-controls span {
+    font-weight: 800; font-size: 1rem; min-width: 20px; text-align: center;
+    color: var(--dark-brown);
+  }
+  .add-cart-btn {
+    width: 100%; padding: 10px;
+    background: var(--dark-brown); color: #fff;
+    border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem; font-weight: 700; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .add-cart-btn:hover { background: var(--terracotta); transform: translateY(-2px); }
+  .add-cart-btn.added { background: #2a9d3f; }
+
+  /* ── CARRITO FAB ── */
+  .cart-fab {
+    position: fixed; bottom: 28px; right: 28px; z-index: 200;
+    background: var(--terracotta); color: #fff;
+    border: none; border-radius: 50px;
+    padding: 14px 22px; font-size: 1rem; font-weight: 800;
+    cursor: pointer; box-shadow: 0 6px 24px rgba(192,98,58,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cart-fab:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(192,98,58,0.6); }
+  .cart-count {
+    background: #fff; color: var(--terracotta);
+    border-radius: 50%; width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 900;
+  }
+
+  /* ── CART OVERLAY ── */
+  .cart-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    z-index: 299; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* ── CART SIDEBAR ── */
+  .cart-sidebar {
+    position: fixed; top: 0; right: -420px; width: 380px; max-width: 95vw;
+    height: 100vh; background: var(--cream);
+    z-index: 300; box-shadow: -8px 0 40px rgba(62,32,16,0.18);
+    display: flex; flex-direction: column;
+    transition: right 0.35s cubic-bezier(.4,0,.2,1);
+    border-left: 3px solid var(--warm-sand);
+  }
+  .cart-sidebar.open { right: 0; }
+
+  .cart-header {
+    padding: 22px 24px;
+    border-bottom: 2px solid var(--warm-sand);
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--beige);
+  }
+  .cart-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--dark-brown); font-weight: 900;
+  }
+  .cart-close {
+    background: none; border: none; font-size: 1.2rem;
+    cursor: pointer; color: var(--mid-brown); font-weight: 700;
+    padding: 4px 8px; border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .cart-close:hover { background: var(--warm-sand); }
+
+  .cart-items {
+    flex: 1; overflow-y: auto; padding: 20px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .cart-empty {
+    text-align: center; color: var(--caramel);
+    font-weight: 600; padding: 50px 20px;
+    border: 2px dashed var(--warm-sand); border-radius: 16px;
+  }
+  .cart-item {
+    background: #fff; border: 2px solid var(--warm-sand);
+    border-radius: 14px; padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+    animation: fadeUp 0.3s ease both;
+  }
+  .cart-item-emoji { font-size: 2rem; }
+  .cart-item-info { flex: 1; }
+  .cart-item-info h4 { font-size: 0.95rem; color: var(--dark-brown); font-weight: 800; }
+  .cart-item-info p { font-size: 0.82rem; color: var(--caramel); font-weight: 700; }
+  .cart-item-qty {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cart-item-qty button {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid var(--warm-sand);
+    background: var(--beige); color: var(--dark-brown);
+    font-size: 1rem; font-weight: 800; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .cart-item-qty button:hover { background: var(--warm-sand); }
+  .cart-item-qty span { font-weight: 800; min-width: 18px; text-align: center; }
+
+  .cart-footer {
+    padding: 20px 24px;
+    border-top: 2px solid var(--warm-sand);
+    background: var(--beige);
+  }
+  .cart-total-row {
+    display: flex; justify-content: space-between;
+    font-size: 1.2rem; font-weight: 900;
+    color: var(--dark-brown); margin-bottom: 16px;
+  }
+  .cart-total-row span:last-child { color: var(--terracotta); }
+  .cart-whatsapp-btn {
+    width: 100%; padding: 14px;
+    background: #25D366; color: #fff;
+    border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem; font-weight: 800; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 10px;
+  }
+  .cart-whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.45); }
+  .cart-clear-btn {
+    width: 100%; padding: 10px;
+    background: transparent; color: var(--mid-brown);
+    border: 2px solid var(--warm-sand); border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem; font-weight: 700; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .cart-clear-btn:hover { background: var(--warm-sand); }
+
+  .cart-notice {
+    background: #fff8ec; border: 2px solid var(--warm-sand);
+    border-radius: 12px; padding: 12px 14px;
+    font-size: 0.85rem; color: var(--mid-brown);
+    line-height: 1.6; margin-bottom: 14px;
+  }
+  .cart-date-group {
+    margin-bottom: 14px;
+  }
+  .cart-date-group label {
+    display: block; font-size: 0.8rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 6px;
+  }
+  .cart-date-group input[type="date"] {
+    width: 100%; padding: 10px 14px;
+    border: 2px solid var(--warm-sand); border-radius: 10px;
+    font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+    color: var(--text-dark); background: var(--cream);
+    outline: none; transition: border-color 0.2s;
+  }
+  .cart-date-group input[type="date"]:focus { border-color: var(--caramel); }
+  .date-hint {
+    display: block; font-size: 0.78rem; margin-top: 5px;
+    font-weight: 700; min-height: 18px;
+  }
+  .date-hint.ok  { color: #2a9d3f; }
+  .date-hint.bad { color: var(--terracotta); }
+</style>
+
+<script>
+  const cart = {};
+
+  function changeQty(id, delta) {
+    const el = document.getElementById('qty-' + id);
+    let val = parseInt(el.textContent) + delta;
+    if (val < 0) val = 0;
+    el.textContent = val;
+  }
+
+  function addToCart(id, name, emoji, price) {
+    const qty = parseInt(document.getElementById('qty-' + id).textContent);
+    if (qty === 0) { alert('Primero elige cuántos queques querés 😊'); return; }
+
+    if (cart[id]) {
+      cart[id].qty += qty;
+    } else {
+      cart[id] = { name, emoji, price, qty };
+    }
+
+    // Reset qty display
+    document.getElementById('qty-' + id).textContent = '0';
+
+    // Flash button
+    const btn = event.target;
+    btn.textContent = '¡Agregado! ✓';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = 'Agregar al carrito 🛒'; btn.classList.remove('added'); }, 1500);
+
+    renderCart();
+    updateFab();
+    toggleCart(true);
+  }
+
+  function renderCart() {
+    const itemsEl = document.getElementById('cartItems');
+    const footerEl = document.getElementById('cartFooter');
+    const emptyEl = document.getElementById('cartEmpty');
+
+    itemsEl.innerHTML = '';
+
+    const keys = Object.keys(cart);
+    if (keys.length === 0) {
+      itemsEl.innerHTML = '<div class="cart-empty" id="cartEmpty">Aún no agregaste nada 🎂</div>';
+      footerEl.style.display = 'none';
+      return;
+    }
+
+    footerEl.style.display = 'block';
+    let total = 0;
+
+    keys.forEach(id => {
+      const item = cart[id];
+      total += item.price * item.qty;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <span class="cart-item-emoji">${item.emoji}</span>
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <p>Bs. ${item.price} c/u = Bs. ${item.price * item.qty}</p>
+        </div>
+        <div class="cart-item-qty">
+          <button onclick="updateCartQty('${id}', -1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="updateCartQty('${id}', 1)">+</button>
+        </div>
+      `;
+      itemsEl.appendChild(div);
+    });
+
+    document.getElementById('cartTotal').textContent = 'Bs. ' + total;
+  }
+
+  function updateCartQty(id, delta) {
+    cart[id].qty += delta;
+    if (cart[id].qty <= 0) delete cart[id];
+    renderCart();
+    updateFab();
+  }
+
+  function clearCart() {
+    Object.keys(cart).forEach(k => delete cart[k]);
+    renderCart();
+    updateFab();
+  }
+
+  function updateFab() {
+    const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = total;
+  }
+
+  function toggleCart(forceOpen) {
+    const sidebar = document.getElementById('cartSidebar');
+    const overlay = document.getElementById('cartOverlay');
+    const isOpen = sidebar.classList.contains('open');
+    if (forceOpen === true || !isOpen) {
+      sidebar.classList.add('open');
+      overlay.classList.add('open');
+    } else {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+    }
+  }
+
+  // ── DATE PICKER VALIDATION ──
+  document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('deliveryDate');
+    if (!dateInput) return;
+
+    // Set minimum date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+
+    dateInput.addEventListener('change', () => {
+      const hint = document.getElementById('dateHint');
+      const selected = new Date(dateInput.value + 'T12:00:00');
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const diff = Math.round((selected - today) / (1000*60*60*24));
+      const day = selected.getDay(); // 0=dom,3=mie,6=sab
+
+      if (diff < 1) {
+        hint.textContent = '❌ Necesitamos al menos 1 día de anticipación';
+        hint.className = 'date-hint bad';
+      } else if (day === 3 || day === 6) {
+        hint.textContent = '✅ ¡Perfecto! Es día de entrega 🚚';
+        hint.className = 'date-hint ok';
+      } else {
+        hint.textContent = '⚠️ Entregas son miércoles y sábados — igual anotamos tu pedido';
+        hint.className = 'date-hint bad';
+      }
+    });
+  });
+
+  function sendToWhatsApp() {
+    const keys = Object.keys(cart);
+    if (keys.length === 0) return;
+
+    const dateInput = document.getElementById('deliveryDate');
+    const dateVal = dateInput ? dateInput.value : '';
+
+    if (!dateVal) {
+      showToast('📅 Primero elegí la fecha de entrega');
+      dateInput && dateInput.focus();
+      return;
+    }
+
+    // Validate at least 1 day ahead
+    const selected = new Date(dateVal + 'T12:00:00');
+    const today = new Date(); today.setHours(0,0,0,0);
+    const diff = Math.round((selected - today) / (1000*60*60*24));
+    if (diff < 1) {
+      showToast('❌ Necesitamos 1 día de anticipación');
+      return;
+    }
+
+    // Format date nicely
+    const dias = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const fechaTexto = `${dias[selected.getDay()]} ${selected.getDate()} de ${meses[selected.getMonth()]}`;
+
+    let msg = 'Hola Mati! 🎂 Quiero hacer un pedido:\n\n';
+    let total = 0;
+    keys.forEach(id => {
+      const item = cart[id];
+      msg += `${item.emoji} ${item.name} x${item.qty} = Bs. ${item.price * item.qty}\n`;
+      total += item.price * item.qty;
+    });
+    msg += `\n💰 *Total: Bs. ${total}*`;
+    msg += `\n📅 *Lo necesito para: ${fechaTexto}*`;
+    msg += `\n\n(Sé que los pedidos son con 1 día de anticipación ✅)`;
+
+    const url = 'https://wa.me/59177088185?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+  }
+</script>
+
+<!-- BANNER PEDIDOS -->
+<section class="banner" id="pedidos">
+  <h2>¿Se te antojó algo? 🎂</h2>
+  <p>Escríbenos por WhatsApp y coordinamos tu pedido. ¡Respondemos rápido!</p>
+  <a href="https://wa.me/59177088185?text=Hola%20Mati!%20Vi%20tu%20p%C3%A1gina%20y%20quiero%20hacer%20un%20pedido%20%F0%9F%8E%82" class="whatsapp-btn" target="_blank">
+    <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Hacer pedido por WhatsApp
+  </a>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="contact-info">
+    <span class="section-label">Encuéntranos</span>
+    <h2>¿Dónde estamos? 📍</h2>
+
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <h4>Ubicación</h4>
+        <p>Santa Cruz de la Sierra, Bolivia</p>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">📱</div>
+      <div>
+        <h4>WhatsApp</h4>
+        <p>+591 7 000 0000</p>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">📸</div>
+      <div>
+        <h4>Instagram</h4>
+        <p>@DeliciasDeMati</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <h3>⏰ Pedidos & Entregas</h3>
+    <p>Todos los pedidos con <strong>1 día de anticipación</strong></p>
+    <ul class="hours-list">
+      <li><span>📦 Pedidos</span><span>Lun – Dom</span></li>
+      <li><span>🚚 Entregas</span><span>Miércoles y Sábados</span></li>
+      <li><span>📱 Contacto</span><span>Solo WhatsApp</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- COMENTARIOS -->
+<section class="comments-section" id="comentarios">
+  <span class="section-label">Tu opinión nos importa</span>
+  <h2>Déjanos tu comentario 💬</h2>
+  <p class="comments-sub">¿Probaste nuestros queques? Cuéntanos qué te pareció — nos ayuda a mejorar 🙏</p>
+
+  <div class="comments-wrap">
+    <div class="comment-form-box">
+      <div class="form-group">
+        <label>Tu nombre</label>
+        <input type="text" id="commentName" placeholder="Ej: María García" />
+      </div>
+      <div class="form-group">
+        <label>¿Qué queque probaste?</label>
+        <select id="commentProduct">
+          <option value="">Selecciona un sabor...</option>
+          <option>Queque de Vainilla</option>
+          <option>Queque de Naranja</option>
+          <option>Queque de Chocolate</option>
+          <option>Queque de Coco</option>
+          <option>Queque de Almendra</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tu calificación</label>
+        <div class="stars" id="starRating">
+          <span data-val="1">⭐</span>
+          <span data-val="2">⭐</span>
+          <span data-val="3">⭐</span>
+          <span data-val="4">⭐</span>
+          <span data-val="5">⭐</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Tu comentario</label>
+        <textarea id="commentText" placeholder="¿Qué te gustó? ¿Qué podemos mejorar?"></textarea>
+      </div>
+      <button class="submit-comment" onclick="submitComment()">Enviar comentario ✨</button>
+    </div>
+
+    <div class="comments-list" id="commentsList">
+      <!-- comentarios aparecen aquí -->
+      <div class="no-comments" id="noComments">¡Sé el primero en comentar! 🎂</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Delicias de Mati</strong> 🎂 — Hecho con ❤️ por Mati y Mami Susi</p>
+</footer>
+
+<style>
+  /* ── COMMENTS ── */
+  .comments-section {
+    background: var(--cream);
+    padding: 90px 40px;
+    text-align: center;
+  }
+  .comments-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900;
+    color: var(--dark-brown); margin-bottom: 8px;
+  }
+  .comments-sub { color: var(--mid-brown); margin-bottom: 48px; font-size: 1rem; }
+
+  .comments-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px; max-width: 900px; margin: 0 auto;
+    text-align: left;
+  }
+  @media (max-width: 700px) { .comments-wrap { grid-template-columns: 1fr; } }
+
+  .comment-form-box {
+    background: #fff;
+    border: 2px solid var(--warm-sand);
+    border-radius: 20px; padding: 32px;
+    box-shadow: 0 4px 16px rgba(62,32,16,0.07);
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-size: 0.8rem; font-weight: 800;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 6px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 10px 14px;
+    border: 2px solid var(--warm-sand);
+    border-radius: 10px; font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem; color: var(--text-dark);
+    background: var(--cream); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--caramel); }
+  .form-group textarea { height: 100px; resize: vertical; }
+
+  .stars { display: flex; gap: 6px; cursor: pointer; }
+  .stars span { font-size: 1.6rem; opacity: 0.35; transition: opacity 0.15s, transform 0.15s; }
+  .stars span.active { opacity: 1; transform: scale(1.2); }
+
+  .submit-comment {
+    width: 100%; padding: 12px;
+    background: var(--terracotta); color: #fff;
+    border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem; font-weight: 800; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 16px rgba(192,98,58,0.3);
+  }
+  .submit-comment:hover { background: var(--mid-brown); transform: translateY(-2px); }
+
+  .comments-list {
+    display: flex; flex-direction: column; gap: 16px;
+    max-height: 480px; overflow-y: auto;
+  }
+  .no-comments {
+    text-align: center; color: var(--caramel);
+    font-size: 1rem; padding: 40px 20px;
+    border: 2px dashed var(--warm-sand);
+    border-radius: 16px; font-weight: 600;
+  }
+  .comment-card {
+    background: #fff; border: 2px solid var(--warm-sand);
+    border-radius: 16px; padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(62,32,16,0.06);
+    animation: fadeUp 0.4s ease both;
+  }
+  .comment-card .cc-top {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 6px;
+  }
+  .comment-card .cc-name {
+    font-weight: 800; font-size: 0.95rem; color: var(--dark-brown);
+  }
+  .comment-card .cc-product {
+    font-size: 0.78rem; color: var(--caramel);
+    font-weight: 700; background: var(--beige);
+    padding: 2px 10px; border-radius: 999px;
+  }
+  .comment-card .cc-stars { font-size: 1rem; margin-bottom: 8px; }
+  .comment-card .cc-text {
+    font-size: 0.9rem; color: var(--mid-brown); line-height: 1.6;
+  }
+</style>
+
+<script>
+  let selectedStars = 0;
+
+  document.querySelectorAll('.stars span').forEach(star => {
+    star.addEventListener('click', () => {
+      selectedStars = parseInt(star.dataset.val);
+      document.querySelectorAll('.stars span').forEach((s, i) => {
+        s.classList.toggle('active', i < selectedStars);
+      });
+    });
+  });
+
+  function submitComment() {
+    const name = document.getElementById('commentName').value.trim();
+    const product = document.getElementById('commentProduct').value;
+    const text = document.getElementById('commentText').value.trim();
+
+    if (!name || !product || !text || selectedStars === 0) {
+      alert('Por favor completa todos los campos y elige una calificación ⭐');
+      return;
+    }
+
+    const list = document.getElementById('commentsList');
+    const noComments = document.getElementById('noComments');
+    if (noComments) noComments.remove();
+
+    const stars = '⭐'.repeat(selectedStars);
+    const card = document.createElement('div');
+    card.className = 'comment-card';
+    card.innerHTML = `
+      <div class="cc-top">
+        <span class="cc-name">${name}</span>
+        <span class="cc-product">${product}</span>
+      </div>
+      <div class="cc-stars">${stars}</div>
+      <div class="cc-text">${text}</div>
+    `;
+    list.prepend(card);
+
+    // Reset
+    document.getElementById('commentName').value = '';
+    document.getElementById('commentProduct').value = '';
+    document.getElementById('commentText').value = '';
+    selectedStars = 0;
+    document.querySelectorAll('.stars span').forEach(s => s.classList.remove('active'));
+  }
+</script>
+
+<style>
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left {
+    opacity: 0; transform: translateX(-40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0; transform: translateX(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  /* ── FLOATING EMOJIS HERO ── */
+  .floaties { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .floatie {
+    position: absolute; font-size: 1.8rem; opacity: 0.18;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(110%) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.18; }
+    90%  { opacity: 0.18; }
+    100% { transform: translateY(-20%) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── PULSE BADGE ── */
+  .hero-badge { animation: pulseBadge 2.5s ease-in-out infinite; }
+  @keyframes pulseBadge {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,201,154,0.4); }
+    50%       { box-shadow: 0 0 0 10px rgba(232,201,154,0); }
+  }
+
+  /* ── MENU CARD HOVER GLOW ── */
+  .menu-card:hover .menu-card-img { background: var(--warm-sand); }
+  .menu-card:hover .menu-card-img { font-size: 4.8rem; transition: font-size 0.3s; }
+
+  /* ── ABOUT CARD HOVER ── */
+  .about-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .about-card:hover {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow: 0 16px 40px rgba(62,32,16,0.15);
+  }
+
+  /* ── SCROLL PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--caramel));
+    z-index: 999; width: 0%; transition: width 0.1s linear;
+  }
+
+  /* ── NAV ACTIVE LINK ── */
+  .nav-links a.active {
+    color: var(--terracotta);
+    border-bottom: 2px solid var(--terracotta);
+  }
+
+  /* ── TOAST NOTIFICATION ── */
+  .toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--dark-brown); color: #fff;
+    padding: 12px 24px; border-radius: 50px;
+    font-weight: 700; font-size: 0.9rem;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 400; white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── SABOR FILTER BUTTONS ── */
+  .flavor-filters {
+    display: flex; gap: 10px; justify-content: center;
+    flex-wrap: wrap; margin-bottom: 36px;
+  }
+  .flavor-btn {
+    padding: 8px 20px; border-radius: 999px;
+    border: 2px solid var(--warm-sand);
+    background: var(--cream); color: var(--mid-brown);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700; font-size: 0.88rem; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .flavor-btn:hover, .flavor-btn.active {
+    background: var(--terracotta); color: #fff;
+    border-color: var(--terracotta);
+  }
+
+  /* ── COUNTER ANIMATION ── */
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--terracotta); display: block;
+  }
+  .stat-label { font-size: 0.85rem; color: var(--mid-brown); font-weight: 600; }
+  .stats-row {
+    display: flex; gap: 32px; justify-content: center;
+    flex-wrap: wrap; margin-top: 36px;
+  }
+  .stat-box { text-align: center; }
+</style>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── SCROLL PROGRESS BAR ──
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    document.getElementById('progressBar').style.width = (scrolled / total * 100) + '%';
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+  // ── ACTIVE NAV LINK ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+
+  // ── TOAST ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // Override addToCart to show toast
+  const _origAdd = addToCart;
+  window.addToCart = function(id, name, emoji, price) {
+    const qty = parseInt(document.getElementById('qty-' + id).textContent);
+    if (qty === 0) { showToast('Primero elige cuántos querés 😊'); return; }
+    _origAdd(id, name, emoji, price);
+    showToast(emoji + ' ' + qty + 'x ' + name + ' agregado!');
+  }
+
+  // ── FLOATING EMOJIS ──
+  const floaties = document.querySelector('.floaties') || (() => {
+    const d = document.createElement('div');
+    d.className = 'floaties';
+    document.querySelector('.hero').appendChild(d);
+    return d;
+  })();
+
+  ['🎂','🍦','🍫','🥥','🍊','🌰','✨','🔥'].forEach((em, i) => {
+    const s = document.createElement('span');
+    s.className = 'floatie';
+    s.textContent = em;
+    s.style.left = (10 + i * 11) + '%';
+    s.style.animationDuration = (8 + i * 1.5) + 's';
+    s.style.animationDelay = (i * 1.2) + 's';
+    floaties.appendChild(s);
+  });
+
+  // ── COUNTER ANIMATION ──
+  function animateCounter(el, target, suffix = '') {
+    let start = 0;
+    const step = Math.ceil(target / 40);
+    const interval = setInterval(() => {
+      start += step;
+      if (start >= target) { start = target; clearInterval(interval); }
+      el.textContent = start + suffix;
+    }, 40);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
+          animateCounter(el, parseInt(el.dataset.target), el.dataset.suffix || '');
+        });
+        statsObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stats-row').forEach(el => statsObserver.observe(el));
+
+  // ── FLAVOR FILTER ──
+  document.querySelectorAll('.flavor-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.flavor-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.menu-card').forEach(card => {
+        if (filter === 'all' || card.dataset.flavor === filter) {
+          card.style.display = '';
+          card.style.animation = 'fadeUp 0.4s ease both';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
